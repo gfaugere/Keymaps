@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+#include <keymap_french.h>
 
 enum encoder_names {
   _LEFT,
@@ -39,10 +40,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         | 🤷               | RIP                     | 🦆                 |
      */
     [0] = LAYOUT(
-        LCA(KC_F11), KC_MEDIA_PLAY_PAUSE, XXXXXXX,
-        XXXXXXX    , MO(1)              , RGB_TOG,
-        X(SHRUG)   , XXXXXXX            , X(COIN)
-    ),
+        LCA(KC_F11), XXXXXXX, KC_MEDIA_PLAY_PAUSE,
+        XXXXXXX, MO(1), RGB_TOG,
+        X(SHRUG), XXXXXXX, X(COIN)),
     /*
         | Knob 1: Transparent | Knob 2: Arrow left/right | Knob 3: Transparent |
         | Press: Mute         | Transparent              | Transparent         |
@@ -50,10 +50,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         | Transparent         | RIP                      | alt+0 (Coin.mp3)    |
      */
     [1] = LAYOUT(
-        KC_MUTE       , KC_TRANSPARENT, KC_TRANSPARENT,
+        KC_MUTE, KC_TRANSPARENT, KC_TRANSPARENT,
         KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-        KC_TRANSPARENT, KC_TRANSPARENT, LALT(KC_KP_0)
-    ),
+        KC_TRANSPARENT, KC_TRANSPARENT, LALT(KC_KP_0)),
 };
 
 void encoder_update_user(uint8_t index, bool clockwise) {
@@ -66,21 +65,44 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             }
             break;
         case _MIDDLE:
-            if (layer_state_is(1)) {
-                if (clockwise) {
+            break;
+        case _RIGHT:
+            if (layer_state_is(1))
+            {
+                if (clockwise)
+                {
                     tap_code(KC_RIGHT);
-                } else {
+                }
+                else
+                {
                     tap_code(KC_LEFT);
                 }
-            } else {
-                if (clockwise) {
+            }
+            else
+            {
+                if (clockwise)
+                {
                     tap_code(KC_MEDIA_NEXT_TRACK);
-                } else {
+                }
+                else
+                {
                     tap_code(KC_MEDIA_PREV_TRACK);
                 }
             }
             break;
-        case _RIGHT:
+    }
+}
+
+void rgb_matrix_indicators_user(void) {
+    switch (get_highest_layer(layer_state)) {
+        case 0:
+            rgb_matrix_set_color_all(60, 60, 60);
+            break;
+        case 1:
+            rgb_matrix_set_color_all(80, 80, 80);
+            rgb_matrix_set_color(4, 80, 80, 210);
+            rgb_matrix_set_color(9, 70, 70, 255);
+            rgb_matrix_set_color(10, 70, 70, 255);
             break;
     }
 }
