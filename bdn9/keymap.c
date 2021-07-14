@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRANSPARENT, KC_TRANSPARENT, LALT(KC_KP_0)),
 };
 
-void encoder_update_user(uint8_t index, bool clockwise) {
+bool encoder_update_user(uint8_t index, bool clockwise) {
     switch (index) {
         case _LEFT:
             if (clockwise) {
@@ -91,18 +91,23 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             }
             break;
     }
+    return true;
 }
 
 void rgb_matrix_indicators_user(void) {
     switch (get_highest_layer(layer_state)) {
         case 0:
-            rgb_matrix_set_color_all(60, 60, 60);
+            rgb_matrix_set_color_all(30, 30, 30);
             break;
         case 1:
-            rgb_matrix_set_color_all(80, 80, 80);
-            rgb_matrix_set_color(4, 80, 80, 210);
-            rgb_matrix_set_color(9, 70, 70, 255);
-            rgb_matrix_set_color(10, 70, 70, 255);
+            rgb_matrix_set_color_all(40, 40, 40);
+            rgb_matrix_set_color(4, 0, 0, 255);
+            rgb_matrix_set_color(9, 0, 0, 255);
+            rgb_matrix_set_color(10, 0, 0, 255);
             break;
+    }
+    led_t led_state = host_keyboard_led_state();
+    if (led_state.caps_lock) {
+        rgb_matrix_set_color(10, 255, 0, 0);
     }
 }

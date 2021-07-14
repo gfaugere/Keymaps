@@ -132,3 +132,48 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
   }
   return true;
 }
+
+// Configuring lighting based on layers
+const rgblight_segment_t PROGMEM ug_default[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 12, 0, 0, 128} // Light 12 LEDs, starting with LED 0
+);
+const rgblight_segment_t PROGMEM ug_left_single[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 12, HSV_RED} // Light 12 LEDs, starting with LED 0
+);
+const rgblight_segment_t PROGMEM ug_right_single[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 12, HSV_GREEN} // Light 12 LEDs, starting with LED 0
+);
+const rgblight_segment_t PROGMEM ug_left_double[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 12, HSV_BLUE} // Light 12 LEDs, starting with LED 0
+);
+const rgblight_segment_t PROGMEM ug_right_double[] = RGBLIGHT_LAYER_SEGMENTS(
+    {0, 12, HSV_PURPLE} // Light 12 LEDs, starting with LED 0
+);
+
+const rgblight_segment_t *const PROGMEM ug_layers[] = RGBLIGHT_LAYERS_LIST(
+   ug_default,
+   ug_left_single,
+   ug_right_single,
+   ug_left_double,
+   ug_right_double
+);
+
+void keyboard_post_init_user(void)
+{
+   rgblight_layers = ug_layers;
+}
+
+layer_state_t default_layer_state_set_user(layer_state_t state)
+{
+   rgblight_set_layer_state(0, layer_state_cmp(state, _BASE));
+   return state;
+}
+
+layer_state_t layer_state_set_user(layer_state_t state)
+{
+   rgblight_set_layer_state(1, layer_state_cmp(state, _LAYER_LEFT_SINGLE_TAP_MODIFIER));
+   rgblight_set_layer_state(2, layer_state_cmp(state, _LAYER_RIGHT_SINGLE_TAP_MODIFIER));
+   rgblight_set_layer_state(3, layer_state_cmp(state, _LAYER_LEFT_DUAL_TAP_MODIFIER));
+   rgblight_set_layer_state(4, layer_state_cmp(state, _LAYER_RIGHT_DUAL_TAP_MODIFIER));
+   return state;
+}
