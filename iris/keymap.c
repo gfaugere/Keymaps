@@ -123,11 +123,23 @@ TD(TD_MAJ_LCK), KC_A,  KC_S,    KC_D,    KC_F,    KC_G,                         
 };
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
-  if (index == 1) {
+  if (layer_state_is(_LAYER_RIGHT_SINGLE_TAP_MODIFIER)) {
     if (clockwise) {
-      tap_code(KC_VOLU);
+      tap_code(KC_MS_WH_DOWN);
     } else {
+      tap_code(KC_MS_WH_UP);
+    }
+  } else if (layer_state_is(_LAYER_RIGHT_DUAL_TAP_MODIFIER)) {
+    if (clockwise) {
+      tap_code(KC_MS_WH_LEFT);
+    } else {
+      tap_code(KC_MS_WH_RIGHT);
+    }
+  } else {
+    if (clockwise) {
       tap_code(KC_VOLD);
+    } else {
+      tap_code(KC_VOLU);
     }
   }
   return true;
