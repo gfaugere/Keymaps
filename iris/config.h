@@ -30,3 +30,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_DEFAULT_VAL 63
 
 #define RGBLIGHT_LAYERS
+
+#define TAPPING_TERM 250
