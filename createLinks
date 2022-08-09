@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+BASEDIR=$(dirname "$0")
+
+if ! [ -d "$BASEDIR/../qmk_firmware" ]; then
+    echo 'Error: this script assumes a qmk_firmware repo exists next to this one'
+    exit 1
+fi
+
+ln --force --symbolic --verbose --no-target-directory $(realpath "$BASEDIR/iris/rev4") "$BASEDIR/../qmk_firmware/keyboards/keebio/iris/keymaps/gfaugere_rev4"
+ln --force --symbolic --verbose --no-target-directory $(realpath "$BASEDIR/iris/rev6") "$BASEDIR/../qmk_firmware/keyboards/keebio/iris/keymaps/gfaugere_rev6"
+ln --force --symbolic --verbose --no-target-directory $(realpath "$BASEDIR/bdn9") "$BASEDIR/../qmk_firmware/keyboards/keebio/bdn9/keymaps/gfaugere"
