@@ -146,25 +146,43 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
 }
 
 void rgb_matrix_indicators_user(void) {
+    rgb_matrix_sethsv(0, 0, 50);
     led_t led_state = host_keyboard_led_state();
     switch (get_highest_layer(layer_state)) {
-        case _BASE:
-            rgb_matrix_sethsv(0, 0, 77);
-            break;
         case _LAYER_LEFT_SINGLE_TAP_MODIFIER:
-            rgb_matrix_sethsv(HSV_RED);
+            rgb_matrix_set_color(1, 127, 0, 0);
+            rgb_matrix_set_color(2, 127, 0, 0);
+            rgb_matrix_set_color(3, 127, 0, 0);
+            rgb_matrix_set_color(4, 127, 0, 0);
+            rgb_matrix_set_color(5, 127, 0, 0);
+            rgb_matrix_set_color(23, 127, 0, 0);
+            rgb_matrix_set_color(27, 127, 0, 0);
+            rgb_matrix_set_color(39, 127, 0, 0);
+            rgb_matrix_set_color(38, 127, 0, 0);
+            rgb_matrix_set_color(37, 127, 0, 0);
+            rgb_matrix_set_color(36, 127, 0, 0);
+            rgb_matrix_set_color(35, 127, 0, 0);
+            rgb_matrix_set_color(34, 127, 0, 0);
+            rgb_matrix_set_color(42, 127, 0, 0);
+            rgb_matrix_set_color(45, 127, 0, 0);
+            rgb_matrix_set_color(46, 127, 0, 0);
+            rgb_matrix_set_color(48, 127, 0, 0);
+            rgb_matrix_set_color(49, 127, 0, 0);
+            rgb_matrix_set_color(50, 127, 0, 0);
+            rgb_matrix_set_color(61, 127, 0, 0);
+            rgb_matrix_set_color(25, 255, 0, 0);
             break;
         case _LAYER_RIGHT_SINGLE_TAP_MODIFIER:
-            rgb_matrix_sethsv(HSV_GREEN);
+            rgb_matrix_sethsv(85, 255, 127);
             break;
         case _LAYER_LEFT_DUAL_TAP_MODIFIER:
-            rgb_matrix_sethsv(HSV_BLUE);
+            rgb_matrix_sethsv(170, 255, 127);
             if (!led_state.num_lock) {
                 rgb_matrix_set_color(38, 255, 0, 0);
             }
             break;
         case _LAYER_RIGHT_DUAL_TAP_MODIFIER:
-            rgb_matrix_sethsv(HSV_PURPLE);
+            rgb_matrix_sethsv(191, 255, 127);
             break;
     }
     if (led_state.caps_lock) {
