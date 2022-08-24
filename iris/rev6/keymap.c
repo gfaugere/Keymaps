@@ -142,7 +142,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
       tap_code(KC_VOLU);
     }
   }
-  return true;
+  return false;
 }
 
 void rgb_matrix_indicators_user(void) {
