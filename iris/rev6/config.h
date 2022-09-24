@@ -31,6 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   undef RGB_MATRIX_STARTUP_VAL
 #endif
 #define RGB_MATRIX_STARTUP_VAL 127
+#define RGBLIGHT_SLEEP
 
 #define SPLIT_LAYER_STATE_ENABLE
 #define SPLIT_LED_STATE_ENABLE
