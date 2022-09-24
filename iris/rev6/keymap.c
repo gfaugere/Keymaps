@@ -145,47 +145,53 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
   return false;
 }
 
+void rgb_matrix_set_color_for_array(int *index_list, int list_size, uint8_t red, uint8_t green, uint8_t blue) {
+  for (int i = 0; i < list_size; i++) {
+    rgb_matrix_set_color(index_list[i], red, green, blue);
+  }
+}
+
+void rgb_matrix_set_color_for_underglow(uint8_t red, uint8_t green, uint8_t blue) {
+  int underglow_indexes[] = {28, 29, 30, 31, 32, 33, 62, 63, 64, 65, 66, 67};
+  rgb_matrix_set_color_for_array(underglow_indexes, 12, red, green, blue);
+}
+
 void rgb_matrix_indicators_user(void) {
     rgb_matrix_sethsv(0, 0, 50);
     led_t led_state = host_keyboard_led_state();
     switch (get_highest_layer(layer_state)) {
         case _LAYER_LEFT_SINGLE_TAP_MODIFIER:
-            rgb_matrix_set_color(1, 127, 0, 0);
-            rgb_matrix_set_color(2, 127, 0, 0);
-            rgb_matrix_set_color(3, 127, 0, 0);
-            rgb_matrix_set_color(4, 127, 0, 0);
-            rgb_matrix_set_color(5, 127, 0, 0);
-            rgb_matrix_set_color(23, 127, 0, 0);
-            rgb_matrix_set_color(27, 127, 0, 0);
-            rgb_matrix_set_color(39, 127, 0, 0);
-            rgb_matrix_set_color(38, 127, 0, 0);
-            rgb_matrix_set_color(37, 127, 0, 0);
-            rgb_matrix_set_color(36, 127, 0, 0);
-            rgb_matrix_set_color(35, 127, 0, 0);
-            rgb_matrix_set_color(34, 127, 0, 0);
-            rgb_matrix_set_color(42, 127, 0, 0);
-            rgb_matrix_set_color(45, 127, 0, 0);
-            rgb_matrix_set_color(46, 127, 0, 0);
-            rgb_matrix_set_color(48, 127, 0, 0);
-            rgb_matrix_set_color(49, 127, 0, 0);
-            rgb_matrix_set_color(50, 127, 0, 0);
-            rgb_matrix_set_color(61, 127, 0, 0);
+            rgb_matrix_sethsv(0, 0, 25);
+            int left_single_indexes[] = {1, 2, 3, 4, 5, 23, 27, 39, 38, 37, 36, 35, 34, 42, 45, 46, 48, 49, 50, 61};
+            rgb_matrix_set_color_for_array(left_single_indexes, 20, 127, 0, 0);
+            rgb_matrix_set_color_for_underglow(255, 0, 0);
             rgb_matrix_set_color(25, 255, 0, 0);
             break;
         case _LAYER_RIGHT_SINGLE_TAP_MODIFIER:
-            rgb_matrix_sethsv(85, 255, 127);
+            rgb_matrix_sethsv(0, 0, 25);
+            int right_single_indexes[] = {0, 1, 2, 3, 4, 23, 36, 37, 59};
+            rgb_matrix_set_color_for_array(right_single_indexes, 9, 74, 128, 0);
+            rgb_matrix_set_color_for_underglow(74, 128, 0);
             break;
         case _LAYER_LEFT_DUAL_TAP_MODIFIER:
-            rgb_matrix_sethsv(170, 255, 127);
+            rgb_matrix_sethsv(0, 0, 25);
+            int left_dual_indexes[] = {25, 35, 36, 37, 38, 41, 42, 43, 44, 48, 49, 50, 53, 54, 55, 58};
+            rgb_matrix_set_color_for_array(left_dual_indexes, 16, 0, 0, 255);
+            rgb_matrix_set_color_for_underglow(0, 0, 255);
             if (!led_state.num_lock) {
                 rgb_matrix_set_color(38, 255, 0, 0);
+                rgb_matrix_set_color(67, 255, 0, 0);
             }
             break;
         case _LAYER_RIGHT_DUAL_TAP_MODIFIER:
-            rgb_matrix_sethsv(191, 255, 127);
+            rgb_matrix_sethsv(0, 0, 25);
+            int right_dual_indexes[] = {34, 35, 36, 37, 42, 49, 59};
+            rgb_matrix_set_color_for_array(right_dual_indexes, 7, 128, 0, 128);
+            rgb_matrix_set_color_for_underglow(128, 0, 128);
             break;
     }
     if (led_state.caps_lock) {
         rgb_matrix_set_color(12, 255, 0, 0);
+        rgb_matrix_set_color(30, 255, 0, 0);
     }
 }
