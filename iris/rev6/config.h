@@ -39,3 +39,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define RGBLIGHT_LAYERS
 
 #define TAPPING_TERM 250
+
+#define UNICODE_SELECTED_MODES UC_LNX
