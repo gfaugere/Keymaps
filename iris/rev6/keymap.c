@@ -48,6 +48,10 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_RIGHT_MOD] = ACTION_TAP_DANCE_FN_ADVANCED(right_mod_finish, right_mod_finish, right_mod_reset),
 };
 
+enum custom_keycodes {
+    OLD_STYLE_SHRUG
+};
+
 enum unicode_names {
     DUCK,
     SHRUG
@@ -82,7 +86,7 @@ TD(TD_MAJ_LCK), KC_A,  KC_S,    KC_D,    KC_F,    KC_G,                         
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______, _______, _______, _______,                            _______, KC_LEFT, KC_DOWN, KC_RGHT, _______, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_NUBS, _______, _______, _______, _______, _______, KC_HOME,          _______, _______, _______, _______, _______, _______, _______,
+     KC_NUBS, _______, _______, _______, _______, _______, KC_HOME,          _______, _______, _______, _______, _______, _______, OLD_STYLE_SHRUG,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, _______, _______
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -130,6 +134,18 @@ TD(TD_MAJ_LCK), KC_A,  KC_S,    KC_D,    KC_F,    KC_G,                         
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   )
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case OLD_STYLE_SHRUG:
+            if (record->event.pressed) {
+                send_unicode_string("¯\\_(ツ)_/¯");
+            }
+            return false;
+    }
+
+    return true;
+}
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
   if (layer_state_is(_LAYER_RIGHT_SINGLE_TAP_MODIFIER)) {
