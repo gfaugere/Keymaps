@@ -134,21 +134,21 @@ TD(TD_MAJ_LCK), KC_A,  KC_S,    KC_D,    KC_F,    KC_G,                         
 bool encoder_update_user(uint8_t index, bool clockwise) {
   if (layer_state_is(_LAYER_RIGHT_SINGLE_TAP_MODIFIER)) {
     if (clockwise) {
-      tap_code(KC_MS_WH_DOWN);
-    } else {
       tap_code(KC_MS_WH_UP);
+    } else {
+      tap_code(KC_MS_WH_DOWN);
     }
   } else if (layer_state_is(_LAYER_RIGHT_DUAL_TAP_MODIFIER)) {
     if (clockwise) {
-      tap_code(KC_MS_WH_LEFT);
-    } else {
       tap_code(KC_MS_WH_RIGHT);
+    } else {
+      tap_code(KC_MS_WH_LEFT);
     }
   } else {
     if (clockwise) {
-      tap_code(KC_VOLD);
-    } else {
       tap_code(KC_VOLU);
+    } else {
+      tap_code(KC_VOLD);
     }
   }
   return false;
@@ -178,8 +178,8 @@ void rgb_matrix_indicators_user(void) {
             break;
         case _LAYER_RIGHT_SINGLE_TAP_MODIFIER:
             rgb_matrix_sethsv(0, 0, 25);
-            int right_single_indexes[] = {0, 1, 2, 3, 4, 23, 36, 37, 59};
-            rgb_matrix_set_color_for_array(right_single_indexes, 9, 74, 128, 0);
+            int right_single_indexes[] = {0, 1, 2, 3, 4, 23, 36, 37, 59, 61};
+            rgb_matrix_set_color_for_array(right_single_indexes, 10, 74, 128, 0);
             rgb_matrix_set_color_for_underglow(74, 128, 0);
             break;
         case _LAYER_LEFT_DUAL_TAP_MODIFIER:
@@ -194,8 +194,8 @@ void rgb_matrix_indicators_user(void) {
             break;
         case _LAYER_RIGHT_DUAL_TAP_MODIFIER:
             rgb_matrix_sethsv(0, 0, 25);
-            int right_dual_indexes[] = {34, 35, 36, 37, 42, 49, 59};
-            rgb_matrix_set_color_for_array(right_dual_indexes, 7, 128, 0, 128);
+            int right_dual_indexes[] = {34, 35, 36, 37, 42, 49, 59, 61};
+            rgb_matrix_set_color_for_array(right_dual_indexes, 8, 128, 0, 128);
             rgb_matrix_set_color_for_underglow(128, 0, 128);
             break;
     }
