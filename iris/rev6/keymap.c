@@ -16,7 +16,6 @@ enum
   TD_RIGHT_MOD,
 };
 // Functions used in tap dancing
-
 void left_mod_finish(qk_tap_dance_state_t *state, void *user_data) {
   if (state->count == 1) {
     layer_on(_LAYER_LEFT_SINGLE_TAP_MODIFIER);
@@ -45,8 +44,8 @@ void right_mod_reset(qk_tap_dance_state_t *state, void *user_data) {
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_WIN_ALT] = ACTION_TAP_DANCE_DOUBLE(KC_LALT, KC_LGUI),
     [TD_MAJ_LCK] = ACTION_TAP_DANCE_DOUBLE(KC_LSFT, KC_CAPS),
-    [TD_LEFT_MOD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, left_mod_finish, left_mod_reset),
-    [TD_RIGHT_MOD] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, right_mod_finish, right_mod_reset),
+    [TD_LEFT_MOD] = ACTION_TAP_DANCE_FN_ADVANCED(left_mod_finish, left_mod_finish, left_mod_reset),
+    [TD_RIGHT_MOD] = ACTION_TAP_DANCE_FN_ADVANCED(right_mod_finish, right_mod_finish, right_mod_reset),
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
