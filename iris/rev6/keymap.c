@@ -16,29 +16,31 @@ enum
   TD_RIGHT_MOD,
 };
 // Functions used in tap dancing
+void left_mod_reset(qk_tap_dance_state_t *state, void *user_data) {
+  layer_off(_LAYER_LEFT_SINGLE_TAP_MODIFIER);
+  layer_off(_LAYER_LEFT_DUAL_TAP_MODIFIER);
+}
 void left_mod_finish(qk_tap_dance_state_t *state, void *user_data) {
+  left_mod_reset(state, user_data);
   if (state->count == 1) {
     layer_on(_LAYER_LEFT_SINGLE_TAP_MODIFIER);
   } else {
     layer_on(_LAYER_LEFT_DUAL_TAP_MODIFIER);
   }
 }
-void left_mod_reset(qk_tap_dance_state_t *state, void *user_data) {
+void right_mod_reset(qk_tap_dance_state_t *state, void *user_data) {
+  layer_off(_LAYER_RIGHT_SINGLE_TAP_MODIFIER);
   layer_off(_LAYER_LEFT_SINGLE_TAP_MODIFIER);
-  layer_off(_LAYER_LEFT_DUAL_TAP_MODIFIER);
+  layer_off(_LAYER_RIGHT_DUAL_TAP_MODIFIER);
 }
 void right_mod_finish(qk_tap_dance_state_t *state, void *user_data) {
+  right_mod_reset(state, user_data);
   if (state->count == 1) {
     layer_on(_LAYER_RIGHT_SINGLE_TAP_MODIFIER);
     layer_on(_LAYER_LEFT_SINGLE_TAP_MODIFIER);
   } else {
     layer_on(_LAYER_RIGHT_DUAL_TAP_MODIFIER);
   }
-}
-void right_mod_reset(qk_tap_dance_state_t *state, void *user_data) {
-  layer_off(_LAYER_RIGHT_SINGLE_TAP_MODIFIER);
-  layer_off(_LAYER_LEFT_SINGLE_TAP_MODIFIER);
-  layer_off(_LAYER_RIGHT_DUAL_TAP_MODIFIER);
 }
 // Tap Dance definitions
 qk_tap_dance_action_t tap_dance_actions[] = {
