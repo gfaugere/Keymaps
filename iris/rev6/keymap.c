@@ -186,16 +186,17 @@ void rgb_matrix_set_color_for_underglow(uint8_t red, uint8_t green, uint8_t blue
 void rgb_matrix_indicators_user(void) {
     rgb_matrix_sethsv(0, 0, 50);
     led_t led_state = host_keyboard_led_state();
+    int left_single_indexes[] = {1, 2, 3, 4, 5, 11, 23, 27, 39, 38, 37, 36, 35, 34, 42, 45, 46, 48, 49, 50, 61};
     switch (get_highest_layer(layer_state)) {
         case _LAYER_LEFT_SINGLE_TAP_MODIFIER:
             rgb_matrix_sethsv(0, 0, 25);
-            int left_single_indexes[] = {1, 2, 3, 4, 5, 11, 23, 27, 39, 38, 37, 36, 35, 34, 42, 45, 46, 48, 49, 50, 61};
             rgb_matrix_set_color_for_array(left_single_indexes, 21, 127, 0, 0);
             rgb_matrix_set_color_for_underglow(255, 0, 0);
             rgb_matrix_set_color(25, 255, 0, 0);
             break;
         case _LAYER_RIGHT_SINGLE_TAP_MODIFIER:
             rgb_matrix_sethsv(0, 0, 25);
+            rgb_matrix_set_color_for_array(left_single_indexes, 21, 30, 0, 0);
             int right_single_indexes[] = {0, 1, 2, 3, 4, 23, 36, 37, 59, 61};
             rgb_matrix_set_color_for_array(right_single_indexes, 10, 74, 128, 0);
             rgb_matrix_set_color_for_underglow(74, 128, 0);
