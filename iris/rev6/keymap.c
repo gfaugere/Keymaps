@@ -190,22 +190,22 @@ void rgb_matrix_indicators_user(void) {
     switch (get_highest_layer(layer_state)) {
         case _LAYER_LEFT_SINGLE_TAP_MODIFIER:
             rgb_matrix_sethsv(0, 0, 25);
-            rgb_matrix_set_color_for_array(left_single_indexes, 21, 127, 0, 0);
-            rgb_matrix_set_color_for_underglow(255, 0, 0);
-            rgb_matrix_set_color(25, 255, 0, 0);
+            rgb_matrix_set_color_for_array(left_single_indexes, 21, 192, 176, 16);
+            rgb_matrix_set_color_for_underglow(192, 176, 16);
+            rgb_matrix_set_color(25, 192, 176, 16);
             break;
         case _LAYER_RIGHT_SINGLE_TAP_MODIFIER:
             rgb_matrix_sethsv(0, 0, 25);
-            rgb_matrix_set_color_for_array(left_single_indexes, 21, 30, 0, 0);
+            rgb_matrix_set_color_for_array(left_single_indexes, 21, 192, 176, 16);
             int right_single_indexes[] = {0, 1, 2, 3, 4, 23, 36, 37, 59, 61};
-            rgb_matrix_set_color_for_array(right_single_indexes, 10, 74, 128, 0);
-            rgb_matrix_set_color_for_underglow(74, 128, 0);
+            rgb_matrix_set_color_for_array(right_single_indexes, 10, 11, 210, 215);
+            rgb_matrix_set_color_for_underglow(11, 210, 215);
             break;
         case _LAYER_LEFT_DUAL_TAP_MODIFIER:
             rgb_matrix_sethsv(0, 0, 25);
             int left_dual_indexes[] = {25, 35, 38, 41, 42, 43, 44, 47, 48, 49, 50, 53, 54, 55, 56, 57, 58, 59};
-            rgb_matrix_set_color_for_array(left_dual_indexes, 18, 0, 0, 255);
-            rgb_matrix_set_color_for_underglow(0, 0, 255);
+            rgb_matrix_set_color_for_array(left_dual_indexes, 18, 229, 26, 165);
+            rgb_matrix_set_color_for_underglow(229, 26, 165);
             if (!led_state.num_lock) {
                 rgb_matrix_set_color(38, 255, 0, 0);
                 rgb_matrix_set_color(67, 255, 0, 0);
@@ -214,8 +214,8 @@ void rgb_matrix_indicators_user(void) {
         case _LAYER_RIGHT_DUAL_TAP_MODIFIER:
             rgb_matrix_sethsv(0, 0, 25);
             int right_dual_indexes[] = {34, 35, 36, 37, 42, 49, 59, 61};
-            rgb_matrix_set_color_for_array(right_dual_indexes, 8, 128, 0, 128);
-            rgb_matrix_set_color_for_underglow(128, 0, 128);
+            rgb_matrix_set_color_for_array(right_dual_indexes, 8, 109, 76, 61);
+            rgb_matrix_set_color_for_underglow(109, 76, 61);
             break;
     }
     if (led_state.caps_lock) {
