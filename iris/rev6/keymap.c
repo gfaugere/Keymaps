@@ -118,7 +118,7 @@ TD(TD_MAJ_LCK), KC_A,  KC_S,    KC_D,    KC_F,    KC_G,                         
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______, _______, _______, _______, _______,          _______, _______, KC_P1,   KC_P2,   KC_P3,   KC_PPLS, KC_PENT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    _______, _______, _______,                   _______, KC_P0,   KC_PDOT
+                                    _______, _______, _______,                   KC_CALC, KC_P0,   KC_PDOT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -203,8 +203,8 @@ void rgb_matrix_indicators_user(void) {
             break;
         case _LAYER_LEFT_DUAL_TAP_MODIFIER:
             rgb_matrix_sethsv(0, 0, 25);
-            int left_dual_indexes[] = {25, 35, 38, 41, 42, 43, 44, 47, 48, 49, 50, 53, 54, 55, 56, 57, 58, 59};
-            rgb_matrix_set_color_for_array(left_dual_indexes, 18, 229, 26, 165);
+            int left_dual_indexes[] = {25, 35, 38, 41, 42, 43, 44, 47, 48, 49, 50, 53, 54, 55, 56, 57, 58, 59, 60};
+            rgb_matrix_set_color_for_array(left_dual_indexes, 19, 229, 26, 165);
             rgb_matrix_set_color_for_underglow(229, 26, 165);
             if (!led_state.num_lock) {
                 rgb_matrix_set_color(38, 255, 0, 0);
